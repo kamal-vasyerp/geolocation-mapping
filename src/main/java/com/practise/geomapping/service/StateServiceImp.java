@@ -6,10 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.practise.geomapping.dto.ResponceCity;
+import com.practise.geomapping.exception.StateNotFoundException;
 import com.practise.geomapping.model.State;
 import com.practise.geomapping.repository.StateRepository;
 
-import jakarta.persistence.EntityNotFoundException;
 
 @Service
 public class StateServiceImp implements StateService {
@@ -25,7 +25,7 @@ public class StateServiceImp implements StateService {
 	@Override
 	public State getState(int stateId) {
 		return stateRepositroy.findById(stateId)
-				.orElseThrow(() -> new EntityNotFoundException("State is not present in the database."));
+				.orElseThrow(() -> new StateNotFoundException("State is not present in the database."));
 	}
 
 	@Override

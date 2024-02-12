@@ -5,10 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.practise.geomapping.exception.CityNotFoundException;
 import com.practise.geomapping.model.City;
 import com.practise.geomapping.repository.CityRepository;
 
-import jakarta.persistence.EntityNotFoundException;
 
 @Service
 public class CityServiceImp implements CityService {
@@ -24,7 +24,7 @@ public class CityServiceImp implements CityService {
 	@Override
 	public City getCity(int cityId) {
 		return cityRepository.findById(cityId)
-				.orElseThrow(() -> new EntityNotFoundException("City is not present in the database."));
+				.orElseThrow(() -> new CityNotFoundException("City is not present in the database."));
 	}
 
 	@Override

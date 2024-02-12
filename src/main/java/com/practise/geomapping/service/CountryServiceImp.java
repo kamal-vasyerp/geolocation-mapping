@@ -6,10 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.practise.geomapping.dto.ResponceState;
+import com.practise.geomapping.exception.CountryNotFoundException;
 import com.practise.geomapping.model.Country;
 import com.practise.geomapping.repository.CountryRepository;
 
-import jakarta.persistence.EntityNotFoundException;
 
 @Service
 public class CountryServiceImp implements CountryService {
@@ -25,7 +25,7 @@ public class CountryServiceImp implements CountryService {
 	@Override
 	public Country getCountry(int countryId) {
 		return countryRepository.findById(countryId)
-				.orElseThrow(() -> new EntityNotFoundException("Country is not present in the database."));
+				.orElseThrow(() -> new CountryNotFoundException("Country is not present in the database."));
 	}
 
 	@Override
